@@ -1,0 +1,114 @@
+{
+    "name": "prettify-html-in-php",
+    "displayName": "Prettify HTML in PHP",
+    "description": "Prettify and format HTML inside PHP files with first-class Joomla (jdoc:include) and control structure support.",
+    "version": "1.0.0",
+    "publisher": "uziel",
+    "icon": "icon.png",
+    "engines": {
+        "vscode": "^1.70.0"
+    },
+    "categories": [
+        "Formatters"
+    ],
+    "keywords": [
+        "php",
+        "html",
+        "joomla",
+        "jdoc",
+        "beautify",
+        "format",
+        "prettify",
+        "template",
+        "blade"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/uzielweb/vscode-prettify-html-in-php.git"
+    },
+    "homepage": "https://github.com/uzielweb/vscode-prettify-html-in-php#readme",
+    "bugs": {
+        "url": "https://github.com/uzielweb/vscode-prettify-html-in-php/issues"
+    },
+    "main": "./src/extension.js",
+    "activationEvents": [
+        "onLanguage:php",
+        "onLanguage:html",
+        "onLanguage:blade",
+        "onLanguage:phtml"
+    ],
+    "contributes": {
+        "commands": [
+            {
+                "command": "prettifyHtmlInPhp.format",
+                "title": "Prettify HTML in PHP (Document)"
+            },
+            {
+                "command": "prettifyHtmlInPhp.formatSelection",
+                "title": "Prettify HTML in PHP (Selection)"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "command": "prettifyHtmlInPhp.format",
+                    "when": "editorTextFocus && (editorLangId == php || editorLangId == html || editorLangId == blade || editorLangId == phtml)",
+                    "group": "1_modification@1"
+                }
+            ]
+        },
+        "configuration": {
+            "title": "Prettify HTML in PHP",
+            "properties": {
+                "prettifyHtmlInPhp.indentSize": {
+                    "type": "integer",
+                    "default": 4,
+                    "description": "Indentation size in spaces (default: 4)."
+                },
+                "prettifyHtmlInPhp.indentWithTabs": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Use tabs for indentation instead of spaces."
+                },
+                "prettifyHtmlInPhp.preserveNewlines": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Preserve empty newlines in the document."
+                },
+                "prettifyHtmlInPhp.maxPreserveNewlines": {
+                    "type": "integer",
+                    "default": 2,
+                    "description": "Maximum number of consecutive empty lines to preserve."
+                },
+                "prettifyHtmlInPhp.wrapLineLength": {
+                    "type": "integer",
+                    "default": 0,
+                    "description": "Maximum line length before wrapping attributes (0 to disable line wrapping)."
+                },
+                "prettifyHtmlInPhp.indentPhpControlStructures": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Indent HTML and code inside PHP control structures (if/endif, foreach/endforeach, while/endwhile, switch/endswitch)."
+                },
+                "prettifyHtmlInPhp.joomlaRules": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable specialized rules for Joomla templates (preserves <jdoc:include ... />, avoids cascading indentation, formats Joomla XML tags cleanly)."
+                },
+                "prettifyHtmlInPhp.jdocSelfClosing": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enforce clean self-closing syntax for <jdoc:include ... />."
+                },
+                "prettifyHtmlInPhp.formatPhpHeader": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Format and align pure PHP preamble at the beginning of the file."
+                }
+            }
+        }
+    },
+    "scripts": {
+        "test": "node test/run-test.js"
+    }
+}
